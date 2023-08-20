@@ -24,25 +24,26 @@ $this->title = 'Transação';
                     'method' => 'post',
                 ],
             ]) ?>
-            <?= Html::a(
-                'Gerar Comprovante',
-                ['painel/gen-pdf', 'id' => $model->id],
-                ['class' => 'btn btn-success']
-            ); ?>
-        </p>
-    <?php
-    endif;
-    ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'datahora',
-            'tipotransacao_id',
-            'remetente_id',
-            'destinatario_id',
-            'valor',
-        ],
-    ]) ?>
+        <?php
+    endif;
+        ?>
+        <?= Html::a(
+            'Gerar Comprovante',
+            ['painel/gen-pdf', 'id' => $model->id],
+            ['class' => 'btn btn-success']
+        ); ?>
+        </p>
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'datahora',
+                'tipotransacao_id',
+                'remetente_id',
+                'destinatario_id',
+                'valor',
+            ],
+        ]) ?>
 </div>

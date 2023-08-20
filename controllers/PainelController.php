@@ -54,6 +54,8 @@ class PainelController extends Controller
         $conta = Conta::findOne($user->conta_id);
         $model->conta = $conta;
 
+
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->addSaldo()) {
                 return $this->redirect('index');
@@ -61,6 +63,44 @@ class PainelController extends Controller
         }
 
         return $this->render('adicionar-saldo', [
+            'conta' => $conta,
+            'model' => $model
+        ]);
+    }
+
+    public function actionSaque()
+    {
+        $model = new SaldoForm();
+        $user = Yii::$app->user->identity;
+        $conta = Conta::findOne($user->conta_id);
+        $model->conta = $conta;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->saque()) {
+                return $this->redirect('index');
+            }
+        }
+
+        return $this->render('saque', [
+            'conta' => $conta,
+            'model' => $model
+        ]);
+    }
+
+    public function actionBoleto()
+    {
+        $model = new SaldoForm();
+        $user = Yii::$app->user->identity;
+        $conta = Conta::findOne($user->conta_id);
+        $model->conta = $conta;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->boleto()) {
+                return $this->redirect('index');
+            }
+        }
+
+        return $this->render('boleto', [
             'conta' => $conta,
             'model' => $model
         ]);

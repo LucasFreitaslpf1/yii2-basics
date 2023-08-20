@@ -15,10 +15,10 @@ class TransacaoCadastro extends Model
 {
     public $id;
     public $label = 'transacao';
-    public $tipo_transacao;
     public $valor;
     public $remetente_id;
     public $destinatario_id;
+    public $tipo_transacao;
 
     public $encontrouR = false;
     /**
@@ -29,7 +29,6 @@ class TransacaoCadastro extends Model
         return [
             [['valor'], 'required'],
             [['remetente_id', 'destinatario_id'], 'required'],
-            [['tipo_transacao'], 'required'],
             [['remetente_id'], 'encontrarRemetente', 'skipOnError' => false],
             [['destinatario_id'], 'encontrarDestinatario', 'skipOnError' => false],
             [['remetente_id'], 'checarSaldo']
@@ -42,10 +41,14 @@ class TransacaoCadastro extends Model
 
         $transacao = new Transacao();
         $transacao->datahora = date('Y-m-d h:i:s');
-        $transacao->tipotransacao_id = $this->tipo_transacao;
+        $transacao->tipotransacao_id = 3; // transferencia
 
         if (Yii::$app->user->can('cliente')) {
             $this->remetente_id = Yii::$app->user->identity->username;
+        }
+
+        if (Yii::$app->user->can('admin')) {
+            $transacao->tipotransacao_id = $this->tipo_transacao;
         }
 
         $remetente = User::findOne(['username' => $this->remetente_id]);

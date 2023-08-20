@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Transacao $model */
 
-$this->title = 'Fazer nova transação';
+$this->title = 'Fazer nova transferência';
 ?>
 <div class="transacao-create">
 

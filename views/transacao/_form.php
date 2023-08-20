@@ -20,14 +20,15 @@ use kartik\select2\Select2;
             'enableAjaxValidation' => true,
         ]
     ); ?>
+    <?php if (Yii::$app->user->can('admin')) : ?>
+        <?php
+        $tipoTransacao = Tipotransacao::find()->all();
+        $tipoTransacaoList = ArrayHelper::map($tipoTransacao, 'id', 'nome');
+        ?>
 
-    <?php
-    $tipoTransacao = Tipotransacao::find()->all();
-    $tipoTransacaoList = ArrayHelper::map($tipoTransacao, 'id', 'nome');
-    ?>
-
-    <?= $form->field($model, 'tipo_transacao')
-        ->dropDownList($tipoTransacaoList, ['prompt' => 'Selecione um tipo de transação']); ?>
+        <?= $form->field($model, 'tipo_transacao')
+            ->dropDownList($tipoTransacaoList, ['prompt' => 'Selecione um tipo de transação']); ?>
+    <?php endif; ?>
 
     <?php
     $clientes = User::find()->select(['id', 'cpf']);

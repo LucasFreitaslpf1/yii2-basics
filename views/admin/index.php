@@ -11,29 +11,29 @@ $this->title = 'Painel do Administrador';
 ?>
 
 <style>
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-.box {
-    background-color: #f2f2f2;
-    padding: 20px;
-    border: 1px solid #ccc;
-    flex: 3;
-    width: 900px;
-}
+    .box {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border: 1px solid #ccc;
+        flex: 3;
+        width: 900px;
+    }
 
-ul {
-    list-style-type: none;
-}
+    ul {
+        list-style-type: none;
+    }
 
-.lista {
-    padding: 1px;
-    margin: 5px;
-    border-bottom: 1px solid;
-}
+    .lista {
+        padding: 1px;
+        margin: 5px;
+        border-bottom: 1px solid;
+    }
 </style>
 <div class="site-index">
     <?php $form = ActiveForm::begin(); ?>
@@ -50,6 +50,11 @@ ul {
             <?= Html::a(
                 'Transações',
                 ["transacao/index"],
+                ['class' => 'btn btn-primary']
+            ); ?><br /><br />
+            <?= Html::a(
+                'Conta',
+                ["conta/index"],
                 ['class' => 'btn btn-primary']
             ); ?><br /><br />
             <?= Html::a(

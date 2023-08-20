@@ -51,16 +51,26 @@ ul {
             <label><b>Tipo de Conta:</b> <?= $conta->getTipoContaString() ?></label><br />
             <label><b>Saldo:</b> <?= $conta->saldo ?></label><br /><br />
             <?= Html::a(
-                'Adicionar Saldo',
+                'Fazer Depósito',
                 ["adicionar-saldo"],
                 ['class' => 'btn btn-success']
+            ); ?>
+            <?= Html::a(
+                'Fazer Saque',
+                ["saque"],
+                ['class' => 'btn btn-warning']
+            ); ?>
+            <?= Html::a(
+                'Pagar boleto',
+                ["boleto"],
+                ['class' => 'btn btn-primary']
             ); ?>
         </div>
         <br />
         <div class="box">
             <h2>Transações:</h2>
             <?= Html::a(
-                'Nova transação',
+                'Nova transferência',
                 ["transacao/create"],
                 ['class' => 'btn btn-warning']
             ); ?>
